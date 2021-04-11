@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/Queue.h
+new
+-
+iostream
+-
+
+/cygdrive/c/MyPrograms/Queue/main.cpp
+iostream
+-
+Queue.h
+/cygdrive/c/MyPrograms/Queue/Queue.h
+
