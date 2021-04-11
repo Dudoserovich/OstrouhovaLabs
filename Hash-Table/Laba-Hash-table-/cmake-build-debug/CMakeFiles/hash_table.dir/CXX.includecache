@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/MyPrograms/Hash-Table/Laba-Hash-table-/ClassHashTable/HashTable.cpp
+HashTable.h
+/cygdrive/c/MyPrograms/Hash-Table/Laba-Hash-table-/ClassHashTable/HashTable.h
+iostream
+-
+
+/cygdrive/c/MyPrograms/Hash-Table/Laba-Hash-table-/ClassHashTable/HashTable.h
+string
+-
+
+/cygdrive/c/MyPrograms/Hash-Table/Laba-Hash-table-/Generation/Generation.cpp
+../ClassHashTable/HashTable.h
+/cygdrive/c/MyPrograms/Hash-Table/Laba-Hash-table-/ClassHashTable/HashTable.h
+iostream
+-
+ctime
+-
+cmath
+-
+
+/cygdrive/c/MyPrograms/Hash-Table/Laba-Hash-table-/Generation/Generation.h
+../ClassHashTable/HashTable.h
+/cygdrive/c/MyPrograms/Hash-Table/Laba-Hash-table-/ClassHashTable/HashTable.h
+
+/cygdrive/c/MyPrograms/Hash-Table/Laba-Hash-table-/main.cpp
+iostream
+-
+ClassHashTable/HashTable.h
+/cygdrive/c/MyPrograms/Hash-Table/Laba-Hash-table-/ClassHashTable/HashTable.h
+Generation/Generation.h
+/cygdrive/c/MyPrograms/Hash-Table/Laba-Hash-table-/Generation/Generation.h
+
