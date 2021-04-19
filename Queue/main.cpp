@@ -8,25 +8,34 @@ using namespace std;
  */
 
 int main() {
-/*    Queue q(8);
-    cout << q.del(false) << endl;
-    q.add(1);
-    q.add(2);
-    q.add(3);
-    q.add(4);
-    q.add(4);
-    Queue q1(5);
-    Queue q2(3);
-    cout << q << endl;
-    q2 = q = q1;
-    q1.add(333);
-    q2.add(555);
+    Queue q(9);
+ //   Queue q1(5);
+    Queue q2(5);
+    q2=q;
+   for (int i = 1; i < 8; i++)
+       q.add(i);
+   //q2.add(1);
+    cout << q.GetN()<<"Q: " << q << endl;
+    cout <<q2.GetN()<< "Q2: " << q2 << endl;
 
-    cout << q << endl;
-    cout << q1 << endl;
-    cout << q2 << endl;*/
+    for (int i = 1; i < 5; i++) {
+        q.del(true);
+        q2.del(true);
+    }
 
-    Queue q(5);
+    q.GetN();
+    cout << q.GetN()<<"Q: " << q << endl;
+    cout <<q2.GetN()<< "Q2: " << q2 << endl;
+
+
+    for (int i = 1; i < 3; ++i) {
+        q.add(i*10);
+    }
+    cout << q.GetN()<<"Q: " << q << endl;
+    cout << q.del(false) << q << endl;
+    cout <<q2.GetN()<< "Q2: " << q2 << endl;
+
+   /* Queue q(5);
     q.add(1);
     q.add(2);
     q.add(3);

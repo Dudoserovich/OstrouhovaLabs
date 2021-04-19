@@ -46,15 +46,28 @@ Queue::Queue(const Queue &obj) {
 bool Queue::add(int a) {
     //если хвост указывает не на последний эл-т + 1, то добавляем
     if ((tail) < (int) max_size) {
-        if (head == tail)
-            vector[head] = a;
-        else
+        //if (head == tail)
+        //    vector[head] = a;
+        //else
             vector[tail] = a;
         tail++;
         return true;
     } else {
-        cout << "Очередь заполнена" << endl;
-        return false;
+        // если tail дошёл до конца, а место в очереди ещё осталось
+        if (head > 0) {
+            int* new_vec = new int[max_size];
+            int count = 0;
+            for (int i = head; i < tail; ++i) {
+                new_vec[count] = vector[i];
+                count++;
+            }
+            head = 0;
+            vector[count] = a;
+            tail = count + 1;
+        } else {
+            cout << "Очередь заполнена" << endl;
+            return false;
+        }
     }
 }
 
@@ -65,9 +78,9 @@ int Queue::del(bool check) {
         if (head == tail)
             tail = tail;
         else if (check) {
-            tail--;
+            head++;
             return 1;
-        } else return (tail - 1);
+        } else return (head);
     } else {
         if (GetN() != 0)
             cout << "Очередь заполнена" << endl;
@@ -93,53 +106,26 @@ bool Queue::clear() {
 }
 
 // реализует присваивание объектов типа Queue
-Queue &Queue::operator=(const Queue &obj) {
-    int *vector2; // указатель на дополнительную память
+Queue &Queue::operator=(Queue &obj) {
 
-    try {
-        // попытка выделить новый участок памяти для vector2
-        vector2 = new int[obj.max_size];
+    if (*obj.vector == *vector)
+        return *this;
 
-        //сохраняем значения массива, которые могут быть дополнительно занесены
-        // спроси у Остр нужно ли это, если нет, то просто закоменьть 109, 110, 130-136
-        int *help_vector = new int[tail];
-        int help_tail = tail;
-        for (int i = 0; i < help_tail; ++i) {
-            help_vector[i] = vector[i];
-        }
+    // если память выделена успешно,
+    // можно освобождать предварительно выделенную память для vector
+    if (GetN() > 0)
+        delete[] vector;
 
-        // если память выделена успешно,
-        // можно освобождать предварительно выделенную память для vector
-        if (GetN() > 0)
-            delete[] vector;
-
-        // скопировать obj в текущий объект
-        vector = vector2; // перенаправить vector на vector2
-        max_size = obj.max_size;
+    // скопировать tail и head в текущий объект
+    if (obj.tail > max_size)
+        tail = max_size;
+    else
         tail = obj.tail;
-        head = obj.head;
+    head = obj.head;
 
-        // заполнить значениями
-        for (int i = 0; i < obj.tail; i++)
-            vector[i] = obj.vector[i];
-        // добавление не заменённых элементов из vector (того, чему присваиваем)
-        if ((obj.tail < help_tail) && (tail != max_size)) { //&& (help_tail < max_size)) {
-            // если количество элементов из очереди,
-            // которой присваивают превышает размер очереди, которую присваивают,
-            // добавлять столько элементов из очер., кот. присв., сколько возможно
-            if ((help_tail > max_size))
-                help_tail = max_size;
-            for (int i = obj.tail; i < help_tail; ++i) {
-                vector[i] = help_vector[i];
-            }
-            tail = help_tail;
-        }
-        delete[] help_vector;
+    // заполнить значениями
+    for (int i = 0; i < tail; i++)
+        vector[i] = obj.vector[i];
 
-    }
-    catch (bad_alloc e) {
-        // если память не выделилась, то вывести соответствующее сообщение
-        cout << e.what() << endl;
-    }
     return *this; // вернуть текущий объект
 }
